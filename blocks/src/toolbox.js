@@ -625,5 +625,26 @@ export const toolbox = {
       categorystyle: 'procedure_category',
       custom: 'PROCEDURE',
     },
+    {
+      kind: 'category',
+      name: 'Output',
+      categorystyle: 'output_category',
+      contents: [
+        {
+          kind: 'block',
+          type: 'print',
+          inputs: {
+            TEXT: {
+              shadow: {
+                type: 'text',
+                fields: {
+                  TEXT: 'Hello World!',
+                },
+              },
+            },
+          },
+        },
+      ],
+    }
   ],
 };
