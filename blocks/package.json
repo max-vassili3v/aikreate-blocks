@@ -24,6 +24,11 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
-    "blockly": "^11.1.1"
+    "@pyodide/pyodide": "^0.17.1",
+    "@xterm/xterm": "^5.5.0",
+    "blockly": "^11.1.1",
+    "jspython-interpreter": "^2.1.15",
+    "node-fetch": "^3.3.2",
+    "pyodide": "^0.26.2"
   }
 }

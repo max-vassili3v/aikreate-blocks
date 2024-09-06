@@ -44,9 +44,18 @@ const print = {
   helpUrl: '',
 };
 
+const input = {
+  "type": "input",
+  "tooltip": "prints text",
+  "helpUrl": "",
+  "message0": "input from user",
+  "output": null,
+  "colour": 165
+};
+
 // Create the block definitions for the JSON-only blocks.
 // This does not register their definitions with Blockly.
 // This file has no side effects!
 export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
-  addText, print
+  addText, print, input
 ]);

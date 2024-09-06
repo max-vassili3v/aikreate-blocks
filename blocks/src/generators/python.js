@@ -26,3 +26,7 @@ forBlock['print'] = function (block, generator) {
     const text = generator.valueToCode(block, 'TEXT', Order.NONE) || "''";
     return `print(${text})`;
   };
+
+forBlock['input'] = function (block, generator) {
+  return [`input()`, Order.ATOMIC];
+};

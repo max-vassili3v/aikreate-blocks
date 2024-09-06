@@ -627,8 +627,8 @@ export const toolbox = {
     },
     {
       kind: 'category',
-      name: 'Output',
-      categorystyle: 'output_category',
+      name: 'Input/Output',
+      categorystyle: 'console_category',
       contents: [
         {
           kind: 'block',
@@ -643,6 +643,10 @@ export const toolbox = {
               },
             },
           },
+        },
+        {
+          kind: 'block',
+          type: 'input',
         },
       ],
     }

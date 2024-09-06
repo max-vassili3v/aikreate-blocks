@@ -11,6 +11,7 @@ import {pythonGenerator} from 'blockly/python';
 import {save, load} from './serialization';
 import {toolbox} from './toolbox';
 import './index.css';
+import {jsPython} from 'jspython-interpreter';
 
 // Register the blocks and generator with Blockly
 Blockly.common.defineBlocks(blocks);
@@ -18,20 +19,28 @@ Object.assign(pythonGenerator.forBlock, forBlock);
 
 // Set up UI elements and inject Blockly
 const codeDiv = document.getElementById('generatedCode').firstChild;
-const outputDiv = document.getElementById('output');
+const outputDiv = document.getElementById('terminal');
 const blocklyDiv = document.getElementById('blocklyDiv');
 const ws = Blockly.inject(blocklyDiv, {toolbox});
 
 // This function resets the code and output divs, shows the
 // generated code from the workspace, and evals the code.
 // In a real application, you probably shouldn't use `eval`.
-const runCode = (isRun) => {
-  const code = pythonGenerator.workspaceToCode(ws);
-  codeDiv.innerText = code;
+async function runPythonCode(code) {
+    // Run Python code
+    try {
+        const result = await pyodide.runPythonAsync(code);
+        console.log('Python output:', result);
+    } catch (error) {
+        console.error('Error running Python code:', error);
+    }
+}
 
-  outputDiv.innerHTML = '';
-  if(isRun) {
-    eval(code);
+const runCode = (isRun) => {
+  
+  
+  if(isRun){
+    runPythonCode(code)
   }
 };
 
@@ -59,5 +68,8 @@ ws.addChangeListener((e) => {
   ) {
     return;
   }
-  runCode(false);
+  code = pythonGenerator.workspaceToCode(ws);
+  codeDiv.innerText = code;
 });
+
+
