@@ -32,14 +32,18 @@
               var term = new Terminal({rows: 20, cols: 50})
               term.open(document.getElementById('terminal'));
               function writetoterm(text) {
-                term.write(text);
+                term.write(text+"\r\n>");
               } 
               
 
               var inputBuffer = '';
               term.onData((data) => {
                 if (data === '\r') { // Enter key
-                  resolveInput(inputBuffer);
+                  try{
+                    resolveInput(inputBuffer);
+                  }catch{
+                    console.log("Not currently reading input")
+                  }
                   term.write('\r\n>'); // Move to a new line
                   inputBuffer = '';
                   term.write(prompt); // Re-display the prompt
@@ -65,9 +69,9 @@
               return c.split('\n')
               .map(line => `\t${line}`)
               .join('\n')
-              .replace("input()", "await xterminput()");
+              .replace(/input\((.*?)\)/g, "await xterminput($1)");
             }
-
+342
             async function runPythonCode(code) {
                 // Run Python code
                 try {
